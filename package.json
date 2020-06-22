@@ -1,0 +1,23 @@
+{
+  "name": "txt-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd server && nodemon server.js\" \"cd client && ng serve --o\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renjeffreyy/txt-todo.git"
+  },
+  "author": "jeffrey ren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renjeffreyy/txt-todo/issues"
+  },
+  "homepage": "https://github.com/renjeffreyy/txt-todo#readme",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
