@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-export const BlogEntriesSchema = new mongoose.Schema({
+const BlogEntriesSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
+  },
+  authorName: {
+    type: String,
   },
   blogBody: {
     type: String,
@@ -44,4 +47,4 @@ export const BlogEntriesSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = BlogEntries = mongoose.model('blogEntries', BlogEntriesSchema);
+module.exports = BlogEntries = mongoose.model('blogs', BlogEntriesSchema);

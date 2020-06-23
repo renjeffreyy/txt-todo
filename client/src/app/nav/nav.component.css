@@ -1,3 +1,15 @@
 .blue {
   color: #58bcea;
 }
+
+.navbar {
+  background-color: #282828;
+}
+
+.nav-item {
+  color: white;
+}
+
+.brand-blog-color {
+  color: white !important;
+}
