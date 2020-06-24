@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container login-container">
+  <form [formGroup]="authForm" (ngSubmit)="signIn()">
+    <h1>Login</h1>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        formControlName="email"
+        required
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="password"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <span class="login-span"
+      ><p class="new-around">New around here?</p>
+      <a href="/register">Register</a></span
+    >
+  </form>
+</div>

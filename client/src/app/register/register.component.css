@@ -1,0 +1,17 @@
+.register-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.register-span {
+  margin-top: 15px;
+  display: block;
+}
+
+.already-member {
+  margin: 0 5px 0 0;
+  display: inline-block;
+}

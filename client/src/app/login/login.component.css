@@ -1,0 +1,17 @@
+.login-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.new-around {
+  margin: 0 5px 0 0;
+  display: inline-block;
+}
+
+.login-span {
+  margin-top: 15px;
+  display: block;
+}
