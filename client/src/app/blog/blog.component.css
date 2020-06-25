@@ -1,0 +1,10 @@
+.post-div {
+  margin: 20px 0px;
+  border: black 2px solid;
+  padding: 10px;
+}
+
+.community-blog-container {
+  height: 50vh;
+  overflow: scroll;
+}

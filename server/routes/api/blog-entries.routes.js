@@ -11,7 +11,18 @@ const User = require('../../models/users.model');
 // @access   Private
 router.post(
   '/',
-  [auth, [check('blogBody', 'Text is required').not().isEmpty()]],
+  [
+    auth,
+    [
+      check('blogBody', 'Text is required, max 400 Characters').isLength({
+        min: 1,
+        max: 400,
+      }),
+      check('blogTitle', 'Please include a title for your post')
+        .not()
+        .isEmpty(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -25,6 +36,7 @@ router.post(
 
       const newPost = new BlogEntries({
         author: req.user.id,
+        blogTitle: req.body.blogTitle,
         authorName: `${user.firstName} ${user.lastName}`,
         blogBody: req.body.blogBody,
       });

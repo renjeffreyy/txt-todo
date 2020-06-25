@@ -1,1 +1,16 @@
-<p>blog works!</p>
+<div class="container">
+  <h1>Community Posts</h1>
+  <div class="community-blog-container">
+    <div class="post-div" *ngFor="let blog of blogs">
+      <h2>{{ blog.blogTitle }}</h2>
+      <h6>By: {{ blog.authorName }}</h6>
+      <h6>Date: {{ blog.creationDate | date }}</h6>
+      <p>
+        {{ blog.blogBody }}
+      </p>
+    </div>
+  </div>
+  <div>
+    <p *ngIf="blogs.length === 0">oops there seems to be nothing here!</p>
+  </div>
+</div>

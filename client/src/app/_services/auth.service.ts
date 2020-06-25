@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './_models/user';
-import { JwtResponse } from './_models/jwt-response';
-import { RegisterUser } from './_models/register-user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../_models/user';
+import { JwtResponse } from '../_models/jwt-response';
+import { RegisterUser } from '../_models/register-user';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+
+const headers = new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('x-auth-token', localStorage.getItem('ACCESS_TOKEN'));
 
 @Injectable({
   providedIn: 'root',

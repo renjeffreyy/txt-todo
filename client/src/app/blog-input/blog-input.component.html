@@ -1,0 +1,30 @@
+<div class="container">
+  <form [formGroup]="blogForm" (ngSubmit)="submitBlog()">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Blog Title</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="my blog post"
+        formControlName="blogTitle"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1"
+        >Blog Post (400 character max)</label
+      >
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        required
+        formControlName="blogBody"
+        placeholder="Tell your story!"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
