@@ -1,0 +1,21 @@
+.post-div {
+  margin: 20px 0px;
+  border: black 2px solid;
+  padding: 10px;
+}
+
+.community-blog-container {
+  height: 70vh;
+  overflow: scroll;
+}
+
+.delete-post {
+  color: #58bcea;
+  text-align: right;
+  margin: 0 5px;
+}
+
+.delete-post:hover {
+  color: red;
+  cursor: pointer;
+}

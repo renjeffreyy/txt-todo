@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogsService } from '../_services/blogs.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-blog-input',
@@ -10,15 +11,22 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class BlogInputComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private blogService: BlogsService
+    private blogService: BlogsService,
+    private authService: AuthService
   ) {}
 
   blogForm: FormGroup;
+
+  display = false;
 
   ngOnInit() {
     this.blogForm = this.formBuilder.group({
       blogTitle: ['', Validators.required],
       blogBody: ['', Validators.required],
+    });
+
+    this.authService.currentUser.subscribe((user) => {
+      this.display = user.auth;
     });
   }
 

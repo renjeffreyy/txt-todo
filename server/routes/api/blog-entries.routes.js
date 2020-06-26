@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth.check');
+const checkObjectId = require('../../middleware/checkObjectId');
 
 const BlogEntries = require('../../models/blog-entries.model');
 const User = require('../../models/users.model');
@@ -59,6 +60,28 @@ router.get('/', async (req, res) => {
     res.json(posts);
   } catch (error) {
     console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/posts/:id
+// @desc     Delete a post
+// @access   Private
+router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const post = await BlogEntries.findById(req.params.id);
+
+    // Check user
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await post.remove();
+
+    res.json({ msg: 'Post removed' });
+  } catch (err) {
+    console.error(err.message);
+
     res.status(500).send('Server Error');
   }
 });

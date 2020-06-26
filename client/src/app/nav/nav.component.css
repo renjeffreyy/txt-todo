@@ -13,3 +13,10 @@
 .brand-blog-color {
   color: white !important;
 }
+.active {
+  color: red;
+}
+
+a:hover {
+  color: #58bcea;
+}

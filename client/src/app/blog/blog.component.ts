@@ -7,15 +7,20 @@ import { BlogsService } from '../_services/blogs.service';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit {
-  constructor(private blogsService: BlogsService) {
-    this.blogs = [];
-  }
+  constructor(private blogsService: BlogsService) {}
 
-  blogs: any;
+  blogs = null;
 
   ngOnInit() {
-    this.blogsService.getBlogs().subscribe(() => {
-      this.blogs.push(...this.blogsService.blogSubject.value);
+    this.blogsService.getBlogs();
+    this.blogsService.blogObserve.subscribe((post) => {
+      this.blogs = post;
+      console.log('from blog init', this.blogs);
+      console.log(
+        'this is what the blog service looks like',
+        this.blogsService.blogObserve,
+        'this is the behavior subject'
+      );
     });
   }
 }

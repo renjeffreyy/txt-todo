@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Blogs } from '../_models/blogs';
+import { AuthService } from '../_services/auth.service';
 
 const headers = new HttpHeaders()
   .set('content-type', 'application/json')
@@ -12,18 +12,23 @@ const headers = new HttpHeaders()
   providedIn: 'root',
 })
 export class BlogsService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
-  blogSubject = new BehaviorSubject([]);
+  private blogSubject = new BehaviorSubject([]);
+  public blogObserve = this.blogSubject.asObservable();
+
   AUTH_SERVER = 'http://localhost:5000';
 
   getBlogs() {
     try {
-      return this.httpClient.get(`${this.AUTH_SERVER}/api/blog`).pipe(
-        tap(async (res: any) => {
+      return this.httpClient
+        .get(`${this.AUTH_SERVER}/api/blog`)
+        .subscribe((res: any) => {
           this.blogSubject.next([...res]);
-        })
-      );
+        });
     } catch (error) {
       console.error(error);
     }
@@ -41,5 +46,27 @@ export class BlogsService {
     } catch (error) {
       console.error(error);
     }
+  }
+  private filteredBlogSubject = new BehaviorSubject([]);
+  public filteredBlogObserve = this.filteredBlogSubject.asObservable();
+
+  getFilterUserBlogs() {
+    let id;
+    this.authService.currentUser.subscribe((user) => {
+      id = user.id;
+    });
+    const initArray = this.blogSubject.getValue();
+
+    const filteredArray = initArray.filter((blog) => {
+      return blog.author == id;
+    });
+    this.filteredBlogSubject.next([...filteredArray]);
+
+    console.log('from blog service', id, initArray, filteredArray);
+  }
+
+  deletePosts() {
+    try {
+    } catch (error) {}
   }
 }

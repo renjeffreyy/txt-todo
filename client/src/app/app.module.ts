@@ -29,9 +29,9 @@ import { BlogInputComponent } from './blog-input/blog-input.component';
     BlogInputComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
   ],
