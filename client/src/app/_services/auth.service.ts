@@ -39,7 +39,6 @@ export class AuthService {
         return this.httpClient
           .get(`${this.AUTH_SERVER}/api/auth`, { headers })
           .subscribe((res) => {
-            console.log(res);
             this.currentUserSubject.next({
               id: res['_id'],
               firstName: res['firstName'],
@@ -47,7 +46,6 @@ export class AuthService {
               email: res['email'],
               auth: true,
             });
-            console.log(this.currentUserSubject);
           });
       }
     } catch (error) {
@@ -81,7 +79,6 @@ export class AuthService {
   }
 
   register(user: RegisterUser): Observable<JwtResponse> {
-    console.log(user);
     return this.httpClient.post(`${this.AUTH_SERVER}/api/users`, user).pipe(
       tap(async (res: JwtResponse) => {
         console.log(res);

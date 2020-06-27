@@ -12,15 +12,9 @@ export class BlogComponent implements OnInit {
   blogs = null;
 
   ngOnInit() {
-    this.blogsService.getBlogs();
+    // this.blogsService.getBlogs();
     this.blogsService.blogObserve.subscribe((post) => {
       this.blogs = post;
-      console.log('from blog init', this.blogs);
-      console.log(
-        'this is what the blog service looks like',
-        this.blogsService.blogObserve,
-        'this is the behavior subject'
-      );
     });
   }
 }

@@ -61,8 +61,6 @@ export class BlogsService {
       return blog.author == id;
     });
     this.filteredBlogSubject.next([...filteredArray]);
-
-    console.log('from blog service', id, initArray, filteredArray);
   }
 
   //delete post

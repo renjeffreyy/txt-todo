@@ -11,6 +11,6 @@ export class HomeComponent implements OnInit {
   //use stored access token to make get request to api to
   // get user data if token is valid
   ngOnInit() {
-    this.authService.loadUser();
+    // this.authService.loadUser();
   }
 }

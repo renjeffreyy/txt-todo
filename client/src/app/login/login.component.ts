@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         return;
       }
       this.authService.signIn(this.authForm.value).subscribe((res) => {
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/');
       });
     } catch (error) {
       console.error(error);
