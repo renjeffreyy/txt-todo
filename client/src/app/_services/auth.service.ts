@@ -30,14 +30,18 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  AUTH_SERVER = 'http://localhost:5000';
+  //dev
+  // AUTH_SERVER = 'http://localhost:5000/';
+
+  //production
+  AUTH_SERVER = '';
 
   loadUser() {
     console.log('from the load user method');
     try {
       if (localStorage.ACCESS_TOKEN) {
         return this.httpClient
-          .get(`${this.AUTH_SERVER}/api/auth`, { headers })
+          .get(`${this.AUTH_SERVER}api/auth`, { headers })
           .subscribe((res) => {
             this.currentUserSubject.next({
               id: res['_id'],
@@ -55,7 +59,7 @@ export class AuthService {
   }
 
   signIn(user: User): Observable<JwtResponse> {
-    return this.httpClient.post(`${this.AUTH_SERVER}/api/auth`, user).pipe(
+    return this.httpClient.post(`${this.AUTH_SERVER}api/auth`, user).pipe(
       tap(async (res: JwtResponse) => {
         const response = await res.token;
         if (response) {
@@ -79,7 +83,7 @@ export class AuthService {
   }
 
   register(user: RegisterUser): Observable<JwtResponse> {
-    return this.httpClient.post(`${this.AUTH_SERVER}/api/users`, user).pipe(
+    return this.httpClient.post(`${this.AUTH_SERVER}api/users`, user).pipe(
       tap(async (res: JwtResponse) => {
         console.log(res);
         if (res.token) {

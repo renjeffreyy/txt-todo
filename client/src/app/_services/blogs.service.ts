@@ -23,12 +23,16 @@ export class BlogsService {
   private blogSubject = new BehaviorSubject([]);
   public blogObserve = this.blogSubject.asObservable();
 
-  AUTH_SERVER = 'http://localhost:5000';
+  //dev
+  // AUTH_SERVER = 'http://localhost:5000/';
+
+  //production
+  AUTH_SERVER = '';
 
   getBlogs() {
     try {
       return this.httpClient
-        .get(`${this.AUTH_SERVER}/api/blog`)
+        .get(`${this.AUTH_SERVER}api/blog`)
         .subscribe((res: any) => {
           this.blogSubject.next([...res]);
         });
@@ -41,7 +45,7 @@ export class BlogsService {
     try {
       console.log('service submit init');
       return this.httpClient
-        .post(`${this.AUTH_SERVER}/api/blog`, post, { headers })
+        .post(`${this.AUTH_SERVER}api/blog`, post, { headers })
         .subscribe((res: Alert) => {
           console.log('from servive', res);
           this.getBlogs();
@@ -71,7 +75,7 @@ export class BlogsService {
   deletePosts(id: string) {
     try {
       return this.httpClient
-        .delete(`${this.AUTH_SERVER}/api/blog/${id}`, { headers })
+        .delete(`${this.AUTH_SERVER}api/blog/${id}`, { headers })
         .subscribe((res: Alert) => {
           console.log('this is response from delete', res);
           alert(res.msg);
