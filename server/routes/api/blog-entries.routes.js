@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route    DELETE api/posts/:id
+// @route    DELETE api/blog/:id
 // @desc     Delete a post
 // @access   Private
 router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
@@ -72,7 +72,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
     const post = await BlogEntries.findById(req.params.id);
 
     // Check user
-    if (post.user.toString() !== req.user.id) {
+    if (post.author.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 

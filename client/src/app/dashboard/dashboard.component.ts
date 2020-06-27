@@ -33,7 +33,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  deletePost() {
+  deletePost(id: string) {
     console.log('deleted');
+    this.blogsService.deletePosts(id);
+    console.log(id);
   }
 }

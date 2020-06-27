@@ -9,7 +9,7 @@
       <p>
         {{ blog.blogBody }}
       </p>
-      <p class="delete-post" (click)="deletePost()">Delete Post</p>
+      <p class="delete-post" (click)="deletePost(blog._id)">Delete Post</p>
     </div>
     <p *ngIf="blogs.length === 0">oops there seems to be nothing here!</p>
   </div>

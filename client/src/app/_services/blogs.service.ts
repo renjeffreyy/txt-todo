@@ -65,8 +65,16 @@ export class BlogsService {
     console.log('from blog service', id, initArray, filteredArray);
   }
 
-  deletePosts() {
+  //delete post
+  deletePosts(id: string) {
     try {
-    } catch (error) {}
+      return this.httpClient
+        .delete(`${this.AUTH_SERVER}/api/blog/${id}`, { headers })
+        .subscribe((res) => {
+          console.log('this is response from delete', res);
+        });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
