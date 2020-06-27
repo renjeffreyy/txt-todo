@@ -43,10 +43,10 @@ router.post(
       });
 
       const post = await newPost.save();
-      res.status(200).json(post);
+      res.status(200).json({ msg: 'Thank you for the post!' });
     } catch (error) {
       console.error(error.message);
-      res.status(500).send('Server Error');
+      res.status(500).json({ msg: 'Server Error' });
     }
   }
 );
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
     res.json(posts);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).send({ msg: 'Server Error' });
   }
 });
 
@@ -82,7 +82,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
   } catch (err) {
     console.error(err.message);
 
-    res.status(500).send('Server Error');
+    res.status(500).send({ msg: 'Server Error' });
   }
 });
 

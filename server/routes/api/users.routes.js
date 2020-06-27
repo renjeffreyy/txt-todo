@@ -63,12 +63,12 @@ router.post(
         { expiresIn: '5 days' },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, msg: 'registration success!' });
         }
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send('server error');
+      res.status(500).send({ msg: 'server error' });
     }
   }
 );

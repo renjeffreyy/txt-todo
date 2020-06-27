@@ -11,7 +11,7 @@
   color: white;
 }
 
-/* for views with width greater than 599px */
+/* for views with width greater than 599px  */
 @media only screen and (min-width: 600px) {
   .footer {
     position: fixed;
